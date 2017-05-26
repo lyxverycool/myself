@@ -1,0 +1,149 @@
+
+@media screen and (max-width: 1170px) {
+	.component{
+		width: 1170px;
+		overflow:hidden;
+		.common{
+			width: 1170px;
+			header,.headers{
+		   		width: 1170px;
+		   		.header{
+		   			width: 1170px;
+		   		}
+		   	}
+			footer{
+		   		width: 1170px;
+		   		.footer{
+		   			width: 1170px;
+		   		}
+		   }
+		}
+	}
+}
+
+header{
+	width:100%;
+	height:90px;
+	z-index:999;
+	.header{
+		width: 1170px;
+    	margin: 0 auto;
+    	height:90px;
+    	padding-top:10px;
+    	position:relative;
+    	.logo img{
+    		width:230px;
+    		height:45px;
+    	}
+    	.nav{
+    		width:400px;
+    		margin-left:350px;
+    		height:50px;
+    		line-height:50px;
+    		color:#fff;
+    		li{
+    			font-size:20px;
+    			cursor:pointer;
+    		}
+    	}
+		#canvas{
+			height:45px;
+			width:180px;
+		}
+	}
+}
+
+.headers{
+	width:100%;
+	height:70px;
+	z-index:999;
+	position:fixed;
+	top:0;
+	left:0;
+	background:#fff;
+	box-shadow: 0 0 0 4px rgba(0,0,0,0.5);
+	animation:ani 1s;
+	.header{
+		width: 1170px;
+    	margin: 0 auto;
+    	height:70px;
+    	padding-top:10px;
+    	.logo img{
+    		width:230px;
+    		height:45px;
+    	}
+    	.nav{
+    		width:400px;
+    		margin-left:200px;
+    		height:50px;
+    		line-height:50px;
+    		color:#494d55;;
+    		li{
+    			font-size:20px;
+    			cursor:pointer;
+    		}
+    	}
+		#canvas{
+			height:45px;
+			width:180px;
+		}
+	}
+}
+@keyframes ani{
+	from {opacity:0;}
+	to {opacity:1;}
+}
+
+
+footer{
+	width:100%;
+	height:216px;
+	background: #26282c;
+	.footer{
+		width: 1170px;
+    	margin: 0 auto;
+    	height:200px;
+    	font-size:16px;
+    	position:relative;
+    	color:#ccc;
+    	padding-top:40px;
+    	.message{
+    		width:500px;
+    		height:140px;
+    		.logo {
+				margin-top:20px;
+				margin-bottom:20px;
+    			img{
+		    		width:230px;
+		    		height:45px;
+		    	}	
+	    	}
+	    	.copyright{
+	    		margin-left:20px;
+	    	}
+			.name{
+				margin-left:20px;
+	    		margin-right:5px;
+	    		color:#cca;
+	    	}
+    	}
+    	.content{
+    		margin:40px 0 0 70px;
+    		width:400px;
+    		height:60px;
+    		.word{
+    			margin-top:20px;
+    		}
+    	}
+    	.wechat{
+    		margin-top:10px;
+    		width:100px;
+    		height:100px;
+    		&:hover{
+    			-webkit-transform: scale(2);
+    			    -ms-transform: scale(2);
+    			        transform: scale(2);
+    		}
+    	}
+	}
+}

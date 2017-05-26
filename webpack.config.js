@@ -25,7 +25,7 @@ module.exports = {
     loaders: [
       { test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader' },
       { test: /\.js[x]?$/, include: path.resolve(__dirname, 'app'), exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.(png|jpg)$/,include: path.resolve(__dirname, 'app'),loader: 'url-loader'},
+      { test: /\.(png|jpg|gif)$/,include: path.resolve(__dirname, 'app'),loader: 'url-loader?name=images/[hash:8].[name].[ext]'},
       { test:/\.(scss|sass)$/,include: path.resolve(__dirname, 'app'),loader:'style-loader!css-loader!sass-loader'}
     ]
   },
