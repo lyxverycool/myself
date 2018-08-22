@@ -1,106 +1,159 @@
 {
-  "name": "react-babel-webpack-boilerplate",
-  "version": "1.4.1",
-  "description": "A boilerplate for React-Babel-Webpack project",
-  "main": "app/main.jsx",
-  "scripts": {
-    "precommit": "npm run lint",
-    "commitmsg": "npm run lint:msg",
-    "lint": "eslint --cache --ignore-path .gitignore --ext .jsx,.js --format=node_modules/eslint-formatter-pretty .",
-    "lint:msg": "validate-commit-msg",
-    "test": "npm run lint",
-    "build": "webpack",
-    "start": "webpack-dev-server --devtool eval --progress --hot --host 0.0.0.0 --content-base app",
-    "deploy": "NODE_ENV=production webpack --config webpack.production.config.js",
-    "deploy-windows": "SET NODE_ENV=production & webpack --config webpack.production.config.js",
-    "validate": "npm ls",
-    "commit": "git cz",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1"
+  "name": "irenshi-base-frame",
+  "version": "0.0.1",
+  "private": true,
+  "proxy": {
+    "/mock/5b30e9bd27418a001c301c2d/api": {
+      "target": "https://easymock.ihr360.com",
+      "secure": false
+    }
   },
   "dependencies": {
-    "babel-runtime": "6.x",
-    "es6-promise": "^4.0.5",
-    "isomorphic-fetch": "^2.2.1",
-    "react": "15.x",
-    "react-dom": "15.x",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.8.1",
-    "redux": "^3.6.0",
-    "redux-immutablejs": "^0.0.8",
-    "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.1.0",
-    "whatwg-fetch": "^2.0.2"
+    "@types/antd": "^1.0.0",
+    "@types/intl": "^1.2.0",
+    "@types/lodash": "^4.14.112",
+    "@types/md5": "^2.1.32",
+    "@types/moment": "^2.13.0",
+    "@types/node-forge": "^0.7.4",
+    "@types/react-intl": "^2.3.8",
+    "@types/redux-logger": "^3.0.6",
+    "antd": "^3.5.0",
+    "babel-jest": "^22.1.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react-app": "^3.1.1",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "chalk": "1.1.3",
+    "css-loader": "0.28.7",
+    "dotenv": "4.0.0",
+    "dotenv-expand": "4.2.0",
+    "extract-text-webpack-plugin": "3.0.2",
+    "file-loader": "0.11.2",
+    "fit-transmit-transparently": "^3.1.66",
+    "fork-ts-checker-webpack-plugin": "^0.2.8",
+    "fs-extra": "3.0.1",
+    "generate-asset-webpack-plugin": "^0.3.0",
+    "git-repo-info": "^2.0.0",
+    "html-webpack-plugin": "2.29.0",
+    "intl": "^1.2.5",
+    "jest": "22.1.4",
+    "loadash": "^1.0.0",
+    "md5": "^2.2.1",
+    "node-forge": "^0.7.5",
+    "object-assign": "4.1.1",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "promise": "8.0.1",
+    "raf": "3.4.0",
+    "react": "^16.3.2",
+    "react-dev-utils": "^5.0.1",
+    "react-dom": "^16.3.2",
+    "react-intl": "^2.4.0",
+    "react-native-md5": "^1.0.0",
+    "readline": "^1.3.0",
+    "redux-logger": "^3.0.6",
+    "resolve": "1.6.0",
+    "silly-datetime": "^0.1.2",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "0.19.0",
+    "sw-precache-webpack-plugin": "0.11.4",
+    "ts-jest": "22.0.1",
+    "ts-loader": "^2.3.7",
+    "tsconfig-paths-webpack-plugin": "^2.0.0",
+    "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.10.0",
+    "tslint-react": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "url-loader": "0.6.2",
+    "versiony": "^2.0.1",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "2.9.4",
+    "webpack-manifest-plugin": "1.3.2",
+    "whatwg-fetch": "2.0.3"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "node scripts/start.js",
+    "start": "npm-run-all -p  watch-css start-js",
+    "build-js": "node scripts/build.js",
+    "build": "npm-run-all build-css build-js",
+    "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
-    "babel-core": "6.x",
-    "babel-eslint": "7.x",
-    "babel-loader": "6.x",
-    "babel-plugin-react-transform": "^2.0.2",
-    "babel-plugin-transform-runtime": "6.x",
-    "babel-preset-es2015": "6.x",
-    "babel-preset-react": "6.x",
-    "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-stage-0": "6.x",
-    "commitizen": "^2.9.3",
-    "conventional-changelog-cli": "1.x",
-    "copy-webpack-plugin": "latest",
-    "css-loader": "~0.26.1",
-    "cz-conventional-changelog": "^1.2.0",
-    "eslint": "latest",
-    "eslint-config-airbnb": "latest",
-    "eslint-formatter-pretty": "^1.1.0",
-    "eslint-plugin-compat": "^1.0.0",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jsx-a11y": "3.x",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-react": "latest",
-    "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
-    "html-webpack-plugin": "^2.22.0",
-    "html-withimg-loader": "^0.1.16",
-    "http-proxy-middleware": "^0.17.3",
-    "husky": "^0.12.0",
-    "node-sass": "^4.5.0",
-    "open-browser-webpack-plugin": "0.0.3",
-    "sass": "^0.5.0",
-    "sass-loader": "^4.0.2",
-    "style-loader": "~0.13.1",
-    "url-loader": "^0.5.6",
-    "animate.css": "^3.4.0",
-    "bootstrap": "3.3.x",
-    "validate-commit-msg": "2.x",
-    "webpack": "1.x",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-dev-server": "1.x",
-    "webpack-hot-middleware": "^2.13.2"
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.0.4",
+    "@types/react": "^16.3.13",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-redux": "^5.0.19",
+    "@types/react-router-dom": "^4.2.6",
+    "@types/redux-devtools-extension": "^2.13.2",
+    "@types/redux-thunk": "^2.1.0",
+    "autoprefixer": "^7.1.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "moment": "^2.22.1",
+    "node-sass": "^4.9.0",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.3",
+    "postcss-loader": "^2.0.8",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.4",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^7.0.1",
+    "typescript": "^2.8.3"
   },
-  "keywords": [
-    "es6",
-    "web app",
-    "boilerplate"
-  ],
-  "author": "Ruan Yifeng",
-  "license": "MIT",
-  "config": {
-    "validate-commit-msg": {
-      "types": [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "perf",
-        "test",
-        "chore",
-        "revert"
-      ],
-      "warnOnFail": false,
-      "maxSubjectLength": 100
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "web.js",
+      "js",
+      "web.jsx",
+      "jsx",
+      "json",
+      "node",
+      "mjs"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "D:\\workplace\\irenshi-convenient-admin\\tsconfig.test.json"
+      }
     }
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
