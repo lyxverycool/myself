@@ -20,7 +20,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const fs = require('fs');
 const sd = require('silly-datetime');
 const packageMsg = JSON.parse(fs.readFileSync('package.json'));
-const versionMsg = {}; 
+const versionMsg = {};
 const readline = require('readline');
 const versiony = require('versiony');
 
@@ -31,7 +31,7 @@ const info = getRepoInfo();
 versionMsg.environment = 'prod';
 versionMsg.application = packageMsg.name;
 versionMsg.version = packageMsg.version;
-versionMsg.gitInfo = ["describe-short:"+info.abbreviatedSha+"","Commit Time: "+info.committerDate+"","Build Time:"+sd.format(new Date(), 'YYYY-MM-DD HH:mm')+"","Message Full : "+info.commitMessage+"", "Commit Username: "+info.committer+"","Build Username:"];
+versionMsg.gitInfo = ["describe-short:" + info.abbreviatedSha + "", "Commit Time: " + info.committerDate + "", "Build Time:" + sd.format(new Date(), 'YYYY-MM-DD HH:mm') + "", "Message Full : " + info.commitMessage + "", "Commit Username: " + info.committer + "", "Build Username:"];
 versionMsg.abbrevId = info.abbreviatedSha;
 versionMsg.commitTime = info.committerDate;
 
@@ -73,9 +73,9 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
- 
-var GenerateAssetPlugin=require('generate-asset-webpack-plugin'); 
-var createServerConfig=function(compilation) {
+
+var GenerateAssetPlugin = require('generate-asset-webpack-plugin');
+var createServerConfig = function (compilation) {
   return JSON.stringify(versionMsg);
 }
 
@@ -88,7 +88,7 @@ module.exports = {
   // devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
   entry: {
-    index:[
+    index: [
       // We ship a few polyfills by default:
       require.resolve('./polyfills'),
       // require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -222,16 +222,11 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      hmr: false,
-                    },
-                  },
+                  fallback: require.resolve('style-loader'),
                   use: [
                     {
                       loader: require.resolve('css-loader'),
@@ -241,25 +236,32 @@ module.exports = {
                         sourceMap: shouldUseSourceMap,
                       },
                     },
+                    // {
+                    //   loader: require.resolve('postcss-loader'),
+                    //   options: {
+                    //     // Necessary for external CSS imports to work
+                    //     // https://github.com/facebookincubator/create-react-app/issues/2677
+                    //     ident: 'postcss',
+                    //     plugins: () => [
+                    //       require('postcss-flexbugs-fixes'),
+                    //       autoprefixer({
+                    //         browsers: [
+                    //           '>1%',
+                    //           'last 4 versions',
+                    //           'Firefox ESR',
+                    //           'not ie < 9', // React doesn't support IE8 anyway
+                    //         ],
+                    //         flexbox: 'no-2009',
+                    //       }),
+                    //       px2rem({remUnit: 75})
+                    //     ],
+                    //   },
+                    // },
                     {
-                      loader: require.resolve('postcss-loader'),
+                      loader: require.resolve('less-loader'),
                       options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
+                        "modifyVars": { "@primary-color": "#19aa8d" }
+                      }
                     },
                   ],
                 },
@@ -302,7 +304,7 @@ module.exports = {
     new GenerateAssetPlugin({
       filename: 'version.json',
       fn: (compilation, cb) => {
-          cb(null, createServerConfig(compilation));
+        cb(null, createServerConfig(compilation));
       },
       extraFiles: []
     }),

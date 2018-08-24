@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "proxy": {
-    "/mock/5b30e9bd27418a001c301c2d/api": {
-      "target": "https://easymock.ihr360.com",
-      "secure": false
+    "/": {
+      "target": "http://localhost:3000/"
     }
   },
   "dependencies": {
@@ -36,6 +35,8 @@
     "html-webpack-plugin": "2.29.0",
     "intl": "^1.2.5",
     "jest": "22.1.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "loadash": "^1.0.0",
     "md5": "^2.2.1",
     "node-forge": "^0.7.5",

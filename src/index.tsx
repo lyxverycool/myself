@@ -9,6 +9,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import ConfigureStore from './store/configureStore';
 import AppRoute from './router/index';
 import Index from './pages/Home';
+import List from './pages/List/index';
 import { LocaleProvider } from 'antd';
 
 
@@ -25,10 +26,14 @@ import zh_CN from './locale/zh_CN';
 // import en_US from './locale/en_US';
 
 /*antd组件库样式*/
-import '../node_modules/antd/dist/antd.min.css'
 
 import registerServiceWorker from './registerServiceWorker';
 const store = ConfigureStore();
+
+//监听state变化
+store.subscribe(() => {
+    console.log(store.getState());
+});
 
 ReactDOM.render(
     (
@@ -38,6 +43,7 @@ ReactDOM.render(
                     <LocaleProvider locale={enCN}>
                         <AppRoute>
                             <Route exact={true} path="/" component={Index} />
+                            <Route path="/list" component={List} />
                         </AppRoute>
                     </LocaleProvider>
                 </HashRouter>

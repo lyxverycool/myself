@@ -35,7 +35,7 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry: {
-    index:[
+    index: [
       // We ship a few polyfills by default:
       require.resolve('./polyfills'),
       require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -53,7 +53,7 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/[name].[hash:8].bundle.js', 
+    filename: 'static/js/[name].[hash:8].bundle.js',
     // 'static/js/bundle.js',
     // There are also additional JS chunk files if you use code splitting.
     chunkFilename: 'static/js/[name].chunk.js',
@@ -160,7 +160,7 @@ module.exports = {
             ],
           },
           {
-            test : /\.(tsx|ts)?$/,
+            test: /\.(tsx|ts)?$/,
             loaders: ['ts-loader']
           },
           // "postcss" loader applies autoprefixer to our CSS.
@@ -169,7 +169,11 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
+            include: [
+              paths.appSrc,
+              paths.appNodeModules  //增加此项
+            ],
             use: [
               require.resolve('style-loader'),
               {
@@ -179,24 +183,10 @@ module.exports = {
                 },
               },
               {
-                loader: require.resolve('postcss-loader'),
+                loader: require.resolve('less-loader'),
                 options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
+                  "modifyVars": { "@primary-color": "#19aa8d" }
+                }
               },
             ],
           },
@@ -292,6 +282,6 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: 3000
+    port: 8080
   }
 };
