@@ -6,7 +6,7 @@ import { addPoetyAction } from '../../actions/home';
 import { Button } from 'antd';
 import * as moment from 'moment';
 
-class List extends React.Component<any, any> {
+class Poety extends React.Component<any, any> {
   constructor(props: any, context: any) {
     super(props, context);
     this.state = {
@@ -14,7 +14,7 @@ class List extends React.Component<any, any> {
       form: {
         title: '',
         content: '',
-        type: '',
+        type: 'poety',
         toOther: false,
         createTime: moment()
       }
@@ -29,9 +29,10 @@ class List extends React.Component<any, any> {
       (err: any) => {
         if (!err) {
           const params = this.state.refInstance.getFieldsValue();
-          this.props.addPoetyAction(params).data.then((res: any) => {
-            console.log(res)
-          })
+          console.log(params)
+          // this.props.addPoetyAction(params).data.then((res: any) => {
+          //   console.log(res)
+          // })
         }
       }
     );
@@ -64,5 +65,5 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(Poety)
 

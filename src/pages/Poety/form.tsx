@@ -5,7 +5,7 @@ import * as ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
-// const { TextArea } = Input;
+const { TextArea } = Input;
 import './form.less';
 
 class PoetyForm extends React.Component<IFormDataProps, any> {
@@ -21,6 +21,9 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
   }
   handleChange(value: any) {
     this.setState({ text: value })
+    this.props.form.setFieldsValue({
+      content: value
+    })
   }
   public render() {
     const formItemLayout = {
@@ -59,7 +62,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
         </FormItem>
         <FormItem  {...formItemLayout} label={"创作日期"}
         >
-          {getFieldDecorator('remindDate', {
+          {getFieldDecorator('createTime', {
             initialValue: formData.createTime,
             rules: [{ type: 'object', required: true, message: '请选择日期' }],
           })(
@@ -69,6 +72,11 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
         <FormItem  {...formItemLayout} label={"内容"}>
           <ReactQuill className="editor" theme="snow" value={this.state.text}
             onChange={this.handleChange} />
+          {getFieldDecorator('content', {
+            initialValue: formData.content,
+          })(
+            <TextArea style={{ display: 'none' }} />
+            )}
         </FormItem>
       </div>
     )

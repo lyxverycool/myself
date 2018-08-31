@@ -5,11 +5,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Redirect, Route } from 'react-router-dom';
 import ConfigureStore from './store/configureStore';
 import AppRoute from './router/index';
 import Index from './pages/Home';
-import List from './pages/List/index';
+import Poety from './pages/Poety/index';
 import { LocaleProvider } from 'antd';
 
 
@@ -43,7 +43,8 @@ ReactDOM.render(
                     <LocaleProvider locale={enCN}>
                         <AppRoute>
                             <Route exact={true} path="/" component={Index} />
-                            <Route path="/list" component={List} />
+                            <Route path="/poety" component={Poety} />
+                            <Redirect to="/" />
                         </AppRoute>
                     </LocaleProvider>
                 </HashRouter>

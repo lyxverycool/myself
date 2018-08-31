@@ -23,7 +23,7 @@ class Home extends React.Component<any, any> {
     /*组件挂载之前执行，只执行一次*/
     componentWillMount() {
         // process.env 获取当前环境变量
-        this.props.asyncAction();
+        // this.props.asyncAction();
     }
     handleChange(value: any) {
         this.setState({ text: value })
