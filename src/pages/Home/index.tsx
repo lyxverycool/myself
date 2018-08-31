@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { asyncAction, asyncPromiseAction } from '../../actions/home';
-import Hello from '../../components/Hello';
 import { connect } from 'react-redux';
-import '../../assets/less/index.less';
-import { Pagination } from 'antd';
-// import { HButton } from 'hui-admin';
+import * as ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import './home.less';
+import { Button } from 'antd';
 
 class Home extends React.Component<any, any> {
     constructor(props: any, context: any) {
@@ -13,8 +13,11 @@ class Home extends React.Component<any, any> {
         this.state = {
             name: 'React Intl',
             code: '',
+            text: '',
             isAsync: false
-        };
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.save = this.save.bind(this)
     }
 
     /*组件挂载之前执行，只执行一次*/
@@ -22,13 +25,18 @@ class Home extends React.Component<any, any> {
         // process.env 获取当前环境变量
         this.props.asyncAction();
     }
-
+    handleChange(value: any) {
+        this.setState({ text: value })
+    }
+    save() {
+        console.log(this.state.text)
+    }
     render() {
-        console.log(this.props.asyncData)
         return (
             <div className="homePage">
-                <Hello name={this.state.name} /> <br />
-                <Pagination showSizeChanger={true} defaultCurrent={3} total={500} /> <br />
+                <ReactQuill theme="snow" value={this.state.text}
+                    onChange={this.handleChange} />
+                <Button type="primary" onClick={this.save}>保存</Button>
             </div>
         )
     }

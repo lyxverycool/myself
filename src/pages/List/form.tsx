@@ -1,9 +1,12 @@
 import * as React from 'react';
 import IFormDataProps from '../../Interface/components/IForm';
 import { Form, Checkbox, Radio, Input, DatePicker } from 'antd';
+import * as ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
-const { TextArea } = Input;
+// const { TextArea } = Input;
+import './form.less';
 
 class PoetyForm extends React.Component<IFormDataProps, any> {
   constructor(props: IFormDataProps, context: any) {
@@ -11,8 +14,13 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
     this.state = {
       name: 'React Intl',
       code: '',
+      text: '',
       isAsync: false
-    };
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(value: any) {
+    this.setState({ text: value })
   }
   public render() {
     const formItemLayout = {
@@ -29,14 +37,6 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
             rules: [{ required: true, message: "请填写标题", pattern: /^\S/ }],
           })(
             <Input maxLength={30} type="input" placeholder={formData.title} />
-            )}
-        </FormItem>
-        <FormItem  {...formItemLayout} label={"内容"}>
-          {getFieldDecorator("content", {
-            rules: [{ required: true, message: "请填写内容", pattern: /^\S/ }],
-            initialValue: formData.content
-          })(
-            <TextArea placeholder='请输入内容' />
             )}
         </FormItem>
         <FormItem  {...formItemLayout}
@@ -65,6 +65,10 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
           })(
             <DatePicker />
             )}
+        </FormItem>
+        <FormItem  {...formItemLayout} label={"内容"}>
+          <ReactQuill className="editor" theme="snow" value={this.state.text}
+            onChange={this.handleChange} />
         </FormItem>
       </div>
     )
