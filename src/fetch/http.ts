@@ -2,7 +2,7 @@
  * @component constants
  * @description Http 服务
  * @time 2018/05/09
- * @author Mike.Cai
+ * @author coo.li
  */
 export class FetchHttp {
 
@@ -25,7 +25,6 @@ export class FetchHttp {
         try {
             const response = await fetch(url, data).catch(e => this.handlerErr(e, url));
             if (!response.ok) {
-                console.log(333)
                 if (response.status === 401) {
                     //登录信息过期
                     window.top.location.href = window.top.location.origin + "/web/index/view/login.jsp#login";
@@ -39,7 +38,6 @@ export class FetchHttp {
         } catch (error) {
             //捕获handlerErr中的异常信息弹框提示处理
             console.log("catch error");
-            console.log(error);
         }
     }
 

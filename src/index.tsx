@@ -1,24 +1,23 @@
 /**
- * @author Mike.Cai
+ * @author coo.li
  * @time 2018/05/05.
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { HashRouter, Redirect, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import ConfigureStore from './store/configureStore';
 import AppRoute from './router/index';
-import Index from './pages/Home';
+import Index from './pages/Home/index';
 import Poety from './pages/Poety/index';
 import { LocaleProvider } from 'antd';
-
 
 /*引入国际化组件*/
 import { IntlProvider } from 'react-intl';
 
 /*引入locale配置文件*/
-// import zhCN from 'antd/lib/locale-provider/zh_CN';
-import enCN from 'antd/lib/locale-provider/en_US';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+//import enCN from 'antd/lib/locale-provider/en_US';
 import 'moment/locale/zh-cn';
 
 /*引入国际化业务名配置*/
@@ -40,11 +39,10 @@ ReactDOM.render(
         <IntlProvider locale={'en'} messages={zh_CN}>
             <Provider store={store}>
                 <HashRouter>
-                    <LocaleProvider locale={enCN}>
+                    <LocaleProvider locale={zhCN}>
                         <AppRoute>
                             <Route exact={true} path="/" component={Index} />
                             <Route path="/poety" component={Poety} />
-                            <Redirect to="/" />
                         </AppRoute>
                     </LocaleProvider>
                 </HashRouter>

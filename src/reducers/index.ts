@@ -1,15 +1,17 @@
 /**
  * @component reducers
- * @description Home RootReducer
+ * @description  RootReducer
  * @time 2018/1/9
  * @author ***
  */
 
 import { combineReducers } from 'redux'; // 连接reducers
-import { asyncReducer } from './home';
+import { homeReducer } from './home';
+import { poetyReducer } from './poety';
 
 const rootReducer = combineReducers({
-    asyncReducer
+    homeReducer,
+    poetyReducer
 })
 
 export default rootReducer;

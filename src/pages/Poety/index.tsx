@@ -1,69 +1,33 @@
 import * as React from 'react';
-import PoetyForm from './form';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { addPoetyAction } from '../../actions/home';
+import AddPoety from './addPoety';
+import PoetyList from './poetyList';
 import { Button } from 'antd';
-import * as moment from 'moment';
 
 class Poety extends React.Component<any, any> {
   constructor(props: any, context: any) {
     super(props, context);
     this.state = {
-      refInstance: null,
-      form: {
-        title: '',
-        content: '',
-        type: 'poety',
-        toOther: false,
-        createTime: moment()
-      }
+      show: 'list'
     }
-    this.submit = this.submit.bind(this)
+    this.add = this.add.bind(this);
   }
-  refAddNotice = (instance: any) => {
-    this.setState({ refInstance: instance });
-  }
-  submit() {
-    this.state.refInstance.validateFields(
-      (err: any) => {
-        if (!err) {
-          const params = this.state.refInstance.getFieldsValue();
-          console.log(params)
-          // this.props.addPoetyAction(params).data.then((res: any) => {
-          //   console.log(res)
-          // })
-        }
-      }
-    );
-  }
-  cancel() {
-    console.log(11)
+  add() {
+    this.setState({
+      show: 'add'
+    })
   }
   render() {
     return (
       <div className="list">
-        <PoetyForm ref={this.refAddNotice} formData={this.state.form} />
-        <div className='text-center'>
-          <Button onClick={this.cancel}>取消</Button>
-          <Button type="primary" onClick={this.submit}>提交</Button>
-        </div>
+        <Button type="primary" onClick={this.add}>添加</Button>
+        {
+          this.state.show === 'list' ? <PoetyList /> : <AddPoety />
+        }
       </div>
     )
   }
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    asyncData: state.asyncReducer
-  }
-}
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    addPoetyAction: bindActionCreators(addPoetyAction, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Poety)
+export default Poety;
 

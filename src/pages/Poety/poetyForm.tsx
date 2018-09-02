@@ -74,6 +74,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
             onChange={this.handleChange} />
           {getFieldDecorator('content', {
             initialValue: formData.content,
+            rules: [{ required: true, message: '请填写内容' }],
           })(
             <TextArea style={{ display: 'none' }} />
             )}

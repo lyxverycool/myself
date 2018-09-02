@@ -1,42 +1,48 @@
 import * as React from 'react';
+import * as moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { asyncAction, asyncPromiseAction } from '../../actions/home';
 import { connect } from 'react-redux';
-import * as ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import './home.less';
-import { Button } from 'antd';
+import { DatePicker } from 'antd';
+const { RangePicker } = DatePicker;
 
 class Home extends React.Component<any, any> {
     constructor(props: any, context: any) {
         super(props, context);
         this.state = {
-            name: 'React Intl',
-            code: '',
-            text: '',
-            isAsync: false
+            startDate: {},//开始时间 此前所有时间禁止
+            afterDateDisabled: {}//此后所有时间禁止
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.save = this.save.bind(this)
+        this.onCalendarChange = this.onCalendarChange.bind(this)
+        this.disabledDate = this.disabledDate.bind(this)
     }
-
-    /*组件挂载之前执行，只执行一次*/
     componentWillMount() {
-        // process.env 获取当前环境变量
-        // this.props.asyncAction();
+        this.props.asyncAction();
     }
-    handleChange(value: any) {
-        this.setState({ text: value })
+    onCalendarChange(dates: any, dateStrings: any) {
+        this.setState({
+            startDate: dates[0],
+            afterDateDisabled: moment(dates[0]).add(3, 'months')//三个月后时间
+        })
     }
-    save() {
-        console.log(this.state.text)
+    disabledDate(current: any) {
+        console.log(this.state.startDate)
+        if (JSON.stringify(this.state.startDate) === '{}') {
+            return current < moment('1900-01-01');
+        } else {
+            return current > moment(this.state.afterDateDisabled)
+        }
     }
     render() {
+        console.log(this.props.homeData)
         return (
             <div className="homePage">
-                <ReactQuill theme="snow" value={this.state.text}
-                    onChange={this.handleChange} />
-                <Button type="primary" onClick={this.save}>保存</Button>
+                <RangePicker
+                    disabledDate={this.disabledDate}
+                    onCalendarChange={this.onCalendarChange}
+                    format="YYYY-MM-DD"
+                />
             </div>
         )
     }
@@ -44,7 +50,7 @@ class Home extends React.Component<any, any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        asyncData: state.asyncReducer
+        homeData: state.homeReducer
     }
 }
 
