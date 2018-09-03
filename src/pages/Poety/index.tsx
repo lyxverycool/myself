@@ -1,33 +1,20 @@
 import * as React from 'react';
 import AddPoety from './addPoety';
 import PoetyList from './poetyList';
-import { Button } from 'antd';
+import PoetyDetail from './poetyDetail';
+import { Switch, Route } from 'react-router-dom';
 
-class Poety extends React.Component<any, any> {
-  constructor(props: any, context: any) {
-    super(props, context);
-    this.state = {
-      show: 'list'
-    }
-    this.add = this.add.bind(this);
-  }
-  add() {
-    this.setState({
-      show: 'add'
-    })
-  }
-  render() {
-    return (
-      <div className="list">
-        <Button type="primary" onClick={this.add}>添加</Button>
-        {
-          this.state.show === 'list' ? <PoetyList /> : <AddPoety />
-        }
-      </div>
-    )
-  }
-}
-
+const Poety = () => (
+  <Switch>
+    <Route exact={true} path='/poety' component={PoetyList} />
+    <Route path='/poety/poetyList' component={PoetyList} />
+    <Route path='/poety/addPoety' component={AddPoety} />
+    <Route path='/poety/poetyDetail/:poetyId' component={PoetyDetail} />
+  </Switch>
+)
 
 export default Poety;
+
+
+
 

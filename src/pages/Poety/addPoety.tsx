@@ -22,7 +22,9 @@ class AddPoety extends React.Component<any, any> {
         this.submit = this.submit.bind(this)
     }
     componentWillReceiveProps(nextProps: any) {
-        console.log(nextProps)
+        if (nextProps.poetyData.addPoety) {
+            this.props.history.push('/poety')
+        }
     }
     refAddNotice = (instance: any) => {
         this.setState({ refInstance: instance });

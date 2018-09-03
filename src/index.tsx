@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import ConfigureStore from './store/configureStore';
 import AppRoute from './router/index';
 import Index from './pages/Home/index';
@@ -41,8 +41,11 @@ ReactDOM.render(
                 <HashRouter>
                     <LocaleProvider locale={zhCN}>
                         <AppRoute>
-                            <Route exact={true} path="/" component={Index} />
-                            <Route path="/poety" component={Poety} />
+                            <Switch>
+                                <Route exact={true} path="/" component={Index} />
+                                <Route path="/poety" component={Poety} />
+                                <Redirect to="/" />
+                            </Switch>
                         </AppRoute>
                     </LocaleProvider>
                 </HashRouter>

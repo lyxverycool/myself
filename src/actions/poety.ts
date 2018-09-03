@@ -35,3 +35,19 @@ export const queryPoetyAction = (params: any) => {
     }
 }
 
+//查询诗文详情
+export const poetyDetailAction = (params: any) => {
+    return async (dispatch: any) => {
+        await FetchHttp.post('/poety/poetyDetail', params).then((res) => {
+            dispatch({
+                type: constants.POET_DETAIL_DATA,
+                data: res.data
+            })
+        }, (error) => {
+            dispatch({
+                type: constants.GET_DATA_ERROR,
+                data: error
+            })
+        })
+    }
+}
