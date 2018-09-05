@@ -3,6 +3,7 @@ import AddPoety from './addPoety';
 import PoetyList from './poetyList';
 import PoetyDetail from './poetyDetail';
 import { Switch, Route } from 'react-router-dom';
+import '../../assets/less/common.less';
 
 const Poety = () => (
   <Switch>

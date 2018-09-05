@@ -10,13 +10,9 @@ class App extends React.Component<any, any> {
         return (
             <Layout>
                 <HeadNav />
-                <Layout>
-                    <Layout style={{ padding: '0 0' }}>
-                        <Content style={{ padding: 0, margin: 0, minHeight: 280 }}>
-                            {this.props.children}
-                        </Content>
-                    </Layout>
-                </Layout>
+                <Content>
+                    {this.props.children}
+                </Content>
             </Layout>
         );
     }

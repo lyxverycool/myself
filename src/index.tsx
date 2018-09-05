@@ -30,9 +30,9 @@ import registerServiceWorker from './registerServiceWorker';
 const store = ConfigureStore();
 
 //监听state变化
-store.subscribe(() => {
-    console.log(store.getState());
-});
+// store.subscribe(() => {
+//     console.log(store.getState());
+// });
 
 ReactDOM.render(
     (

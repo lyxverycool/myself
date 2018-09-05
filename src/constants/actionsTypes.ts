@@ -22,6 +22,10 @@ export type GET_HOME_DATA = typeof GET_HOME_DATA;
 export const POET_DETAIL_DATA = 'POET_DETAIL_DATA';
 export type POET_DETAIL_DATA = typeof POET_DETAIL_DATA;
 
+//重置诗文数据
+export const POET_RESET_DATA = 'POET_RESET_DATA';
+export type POET_RESET_DATA = typeof POET_RESET_DATA;
+
 //获取数据失败
 export const GET_DATA_ERROR = 'GET_DATA_ERROR';
 export type GET_DATA_ERROR = typeof GET_DATA_ERROR;

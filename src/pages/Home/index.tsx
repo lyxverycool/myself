@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { asyncAction, asyncPromiseAction } from '../../actions/home';
 import { connect } from 'react-redux';
-import './home.less';
+import '../../assets/less/common.less';
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 

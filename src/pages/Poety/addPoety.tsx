@@ -2,6 +2,7 @@ import * as React from 'react';
 import PoetyForm from './poetyForm';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addPoetyAction } from '../../actions/poety';
 import { Button } from 'antd';
 import * as moment from 'moment';
@@ -39,15 +40,14 @@ class AddPoety extends React.Component<any, any> {
             }
         );
     }
-    cancel() {
-        console.log(11)
-    }
     render() {
         return (
             <div className="list">
                 <PoetyForm ref={this.refAddNotice} formData={this.state.form} />
                 <div className='text-center'>
-                    <Button onClick={this.cancel}>取消</Button>
+                    <Link to={'/poety/poetyList'}>
+                        <Button>取消</Button>
+                    </Link>
                     <Button type="primary" onClick={this.submit}>提交</Button>
                 </div>
             </div>

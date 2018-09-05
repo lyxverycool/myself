@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import { bindActionCreators } from 'redux';
-import { poetyDetailAction } from '../../actions/poety';
+import { poetyDetailAction, resetPoetyAction } from '../../actions/poety';
 import { connect } from 'react-redux';
 
 class PoetyDetail extends React.Component<any, any> {
@@ -12,9 +12,14 @@ class PoetyDetail extends React.Component<any, any> {
     const params = { id: this.props.match.params.poetyId }
     this.props.poetyDetailAction(params)
   }
+  componentWillUnmount() {
+    //销毁组件时设置content为空
+    this.props.resetPoetyAction();
+  }
   render() {
     const { poetyData, loading } = this.props;
     console.log(poetyData)
+    console.log(loading)
     return (
       <div className="homePage">
         {
@@ -38,7 +43,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    poetyDetailAction: bindActionCreators(poetyDetailAction, dispatch)
+    poetyDetailAction: bindActionCreators(poetyDetailAction, dispatch),
+    resetPoetyAction: bindActionCreators(resetPoetyAction, dispatch)
   }
 }
 
