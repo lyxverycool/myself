@@ -31,3 +31,6 @@ export const GET_DATA_ERROR = 'GET_DATA_ERROR';
 export type GET_DATA_ERROR = typeof GET_DATA_ERROR;
 
 
+//开始获取数据失败
+export const GET_DATA_LOADING = 'GET_DATA_LOADING';
+export type GET_DATA_LOADING = typeof GET_DATA_LOADING;

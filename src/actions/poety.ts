@@ -4,6 +4,10 @@ import { FetchHttp } from '../fetch/http';
 //查询诗文列表
 export const queryPoetyAction = (params: any) => {
     return async (dispatch: any) => {
+        dispatch({
+            type: constants.GET_DATA_LOADING,
+            data: null
+        })
         await FetchHttp.post('/poety/queryPoety', params).then((res) => {
             dispatch({
                 type: constants.GET_POETY_DATA,
