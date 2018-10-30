@@ -18,7 +18,7 @@ class Home extends React.Component<any, any> {
         this.disabledDate = this.disabledDate.bind(this)
     }
     componentWillMount() {
-        this.props.asyncAction();
+        // this.props.asyncAction();
     }
     onCalendarChange(dates: any, dateStrings: any) {
         this.setState({
