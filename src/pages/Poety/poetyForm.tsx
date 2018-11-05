@@ -51,6 +51,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
               <Radio value="chant" className="levl-2">词</Radio>
               <Radio value="lyrics" className="levl-1">歌曲</Radio>
               <Radio value="article" className="levl-1">文章</Radio>
+              
             </RadioGroup>
           )}
         </FormItem>
