@@ -8,10 +8,12 @@
 import { combineReducers } from 'redux'; // 连接reducers
 import { homeReducer } from './home';
 import { poetyReducer } from './poety';
+import { crawlerReducer } from './crawler';
 
 const rootReducer = combineReducers({
     homeReducer,
-    poetyReducer
+    poetyReducer,
+    crawlerReducer
 })
 
 export default rootReducer;

@@ -10,6 +10,7 @@ import ConfigureStore from './store/configureStore';
 import AppRoute from './router/index';
 import Index from './pages/Home/index';
 import Poety from './pages/Poety/index';
+import Crawler from './pages/Crawler/index';
 import { LocaleProvider } from 'antd';
 
 /*引入国际化组件*/
@@ -44,6 +45,7 @@ ReactDOM.render(
                             <Switch>
                                 <Route exact={true} path="/" component={Index} />
                                 <Route path="/poety" component={Poety} />
+                                <Route path="/crawler" component={Crawler} />
                                 <Redirect to="/" />
                             </Switch>
                         </AppRoute>
