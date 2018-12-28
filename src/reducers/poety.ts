@@ -25,7 +25,7 @@ const poetyReducer = (state = poetyState, action: any) => {
         case Constants.GET_DATA_LOADING:
             return Object.assign({}, state, { loading: true, poetyDetail: {} })
         case Constants.GET_DATA_ERROR:
-            return poetyState;
+            return Object.assign({}, state, { loading: false, poetyDetail: {} });
         default:
             return poetyState;
     }

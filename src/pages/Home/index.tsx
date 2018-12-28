@@ -18,7 +18,7 @@ class Home extends React.Component<any, any> {
         this.disabledDate = this.disabledDate.bind(this)
     }
     componentWillMount() {
-        // this.props.asyncAction();
+        //this.props.asyncAction();
     }
     onCalendarChange(dates: any, dateStrings: any) {
         this.setState({
@@ -27,7 +27,6 @@ class Home extends React.Component<any, any> {
         })
     }
     disabledDate(current: any) {
-        console.log(this.state.startDate)
         if (JSON.stringify(this.state.startDate) === '{}') {
             return current < moment('1900-01-01');
         } else {
@@ -35,7 +34,6 @@ class Home extends React.Component<any, any> {
         }
     }
     render() {
-        console.log(this.props.homeData)
         return (
             <div className="homePage">
                 <RangePicker

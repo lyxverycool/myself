@@ -20,7 +20,6 @@ class AddPoety extends React.Component<any, any> {
                 createTime: moment()
             }
         }
-        this.submit = this.submit.bind(this)
     }
     componentWillReceiveProps(nextProps: any) {
         if (nextProps.poetyData.addPoety) {
@@ -30,7 +29,7 @@ class AddPoety extends React.Component<any, any> {
     refAddNotice = (instance: any) => {
         this.setState({ refInstance: instance });
     }
-    submit() {
+    submit = () => {
         this.state.refInstance.validateFields(
             (err: any) => {
                 if (!err) {

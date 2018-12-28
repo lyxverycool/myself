@@ -2,12 +2,14 @@
  * @component constants
  * @description Http 服务
  * @time 2018/05/09
- * @author coo.li
+ * @author cool.li
  */
+import { message } from "antd";
+
 export class FetchHttp {
 
-    static handlerErr(e: any, url: any): any {
-        return Promise.reject("网络异常，请稍后重试！");
+    static handlerErr(url: any): any {
+        message.error("网络异常，请稍后重试！");
     }
 
     static async fetchData(url: string, reqtype: string, options: any) {
@@ -23,18 +25,22 @@ export class FetchHttp {
         }
 
         try {
-            const response = await fetch(url, data).catch(e => this.handlerErr(e, url));
+            const response = await fetch(url, data);
             if (!response.ok) {
                 if (response.status === 401) {
                     //登录信息过期
-                    window.top.location.href = window.top.location.origin + "/web/index/view/login.jsp#login";
+                    message.error("登录过期，请重新登录")
                 } else if (response.status === 403) {
                     //无权限
+                    message.error("403")
                 } else {
+                    this.handlerErr(url)
                     //4XX 5XX其它异常统一弹框提示处理
                 }
+                return response
+            } else {
+                return response.json();
             }
-            return response;
         } catch (error) {
             //捕获handlerErr中的异常信息弹框提示处理
             console.log("catch error");
@@ -43,11 +49,11 @@ export class FetchHttp {
 
     static get(url: string, options: any) {
         const fetchUrl = this.serializeParme(url, options);
-        return this.fetchData(fetchUrl, 'get', {}).then(d => d.json()).catch(e => console.log(e));
+        return this.fetchData(fetchUrl, 'get', {}).then(d => d).catch(e => e);
     }
 
     static post(url: string, options: any, otherOpts?: any) {
-        return this.fetchData(url, 'post', options).then(d => d.json()).catch(e => console.log(e));
+        return this.fetchData(url, 'post', options).then(d => d).catch(e => e);
     }
 
     static serializeParme(url: string, options: any) {

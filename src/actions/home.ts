@@ -5,7 +5,7 @@ import { FetchHttp } from '../fetch/http';
 // reducer同步数据到view
 export const asyncAction = () => {
     return async (dispatch: any) => {
-        await FetchHttp.get('/list/queryListAll', null).then((res) => {
+        await FetchHttp.get('/search', null).then((res) => {
             dispatch({
                 type: constants.GET_HOME_DATA,
                 data: res.data

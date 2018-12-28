@@ -6,7 +6,7 @@ export const getBokeyuanAction = () => {
     return async (dispatch: any) => {
         await FetchHttp.get('/crawler/getCnblogs', null).then((res) => {
             dispatch({
-                type: constants.GET_BOKEYUAN_DATA,
+                type: res.data ? constants.GET_BOKEYUAN_DATA : constants.GET_DATA_ERROR,
                 data: res.data
             })
         }, (error) => {

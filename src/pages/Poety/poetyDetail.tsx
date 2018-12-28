@@ -18,8 +18,6 @@ class PoetyDetail extends React.Component<any, any> {
   }
   render() {
     const { poetyData, loading } = this.props;
-    console.log(poetyData)
-    console.log(loading)
     return (
       <div className="homePage">
         {

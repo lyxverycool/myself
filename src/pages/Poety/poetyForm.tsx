@@ -17,9 +17,8 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
       text: '',
       isAsync: false
     }
-    this.handleChange = this.handleChange.bind(this)
   }
-  handleChange(value: any) {
+  handleChange = (value: any) => {
     this.setState({ text: value })
     this.props.form.setFieldsValue({
       content: value
@@ -40,7 +39,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
             rules: [{ required: true, message: "请填写标题", pattern: /^\S/ }],
           })(
             <Input maxLength={30} type="input" placeholder={formData.title} />
-            )}
+          )}
         </FormItem>
         <FormItem  {...formItemLayout}
           label={"分类"}
@@ -51,7 +50,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
               <Radio value="chant" className="levl-2">词</Radio>
               <Radio value="lyrics" className="levl-1">歌曲</Radio>
               <Radio value="article" className="levl-1">文章</Radio>
-              
+
             </RadioGroup>
           )}
         </FormItem>
@@ -68,7 +67,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
             rules: [{ type: 'object', required: true, message: '请选择日期' }],
           })(
             <DatePicker />
-            )}
+          )}
         </FormItem>
         <FormItem  {...formItemLayout} label={"内容"}>
           {/* <ReactQuill className="editor" theme="snow" value={this.state.text}
@@ -78,7 +77,7 @@ class PoetyForm extends React.Component<IFormDataProps, any> {
             rules: [{ required: true, message: '请填写内容' }],
           })(
             <TextArea style={{ display: 'none' }} />
-            )}
+          )}
         </FormItem>
       </div>
     )

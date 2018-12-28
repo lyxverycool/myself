@@ -10,7 +10,7 @@ export const queryPoetyAction = (params: any) => {
         })
         await FetchHttp.post('/poety/queryPoety', params).then((res) => {
             dispatch({
-                type: constants.GET_POETY_DATA,
+                type: res.data ? constants.GET_POETY_DATA : constants.GET_DATA_ERROR,
                 data: res.data
             })
         }, (error) => {
@@ -27,7 +27,7 @@ export const poetyDetailAction = (params: any) => {
     return async (dispatch: any) => {
         await FetchHttp.post('/poety/poetyDetail', params).then((res) => {
             dispatch({
-                type: constants.POET_DETAIL_DATA,
+                type: res.data ? constants.POET_DETAIL_DATA : constants.GET_DATA_ERROR,
                 data: res.data
             })
         }, (error) => {
@@ -44,7 +44,7 @@ export const addPoetyAction = (params: any) => {
     return async (dispatch: any) => {
         await FetchHttp.post('/poety/addPoety', params).then((res) => {
             dispatch({
-                type: constants.ADD_POETY_DATA,
+                type: res.data ? constants.ADD_POETY_DATA : constants.GET_DATA_ERROR,
                 data: res.data
             })
         }, (error) => {

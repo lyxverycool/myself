@@ -14,27 +14,24 @@ class PoetyList extends React.Component<any, any> {
 			type: "all",
 			page: 1
 		}
-		this.pageChange = this.pageChange.bind(this)
-		this.tabChange = this.tabChange.bind(this)
-		this.queryPoety = this.queryPoety.bind(this)
 	}
 	componentDidMount() {
 		this.queryPoety(this.state.type, this.state.page)
 	}
-	tabChange(key: any) {
+	tabChange = (key: any) => {
 		this.setState({
 			type: key,
 			page: 1
 		})
 		this.queryPoety(key, 1);
 	}
-	pageChange(page: any) {
+	pageChange = (page: any) => {
 		this.setState({
 			page
 		})
 		this.queryPoety(this.state.type, page);
 	}
-	queryPoety(type: any, page: any) {
+	queryPoety = (type: any, page: any) => {
 		const params = {
 			type, page
 		}
@@ -52,7 +49,6 @@ class PoetyList extends React.Component<any, any> {
 	}
 	render() {
 		const { poetyData, loading } = this.props;
-		console.log(loading)
 		return (
 			<div className="homePage">
 				<Link to={'/poety/addPoety'}>
@@ -71,7 +67,7 @@ class PoetyList extends React.Component<any, any> {
 					renderItem={this.renderPoetyList}
 					loading={loading}
 				/>
-				<Pagination defaultCurrent={1} current={this.state.page} onChange={this.pageChange} pageSize={5} total={poetyData.total} />
+				<Pagination defaultCurrent={1} current={this.state.page} onChange={this.pageChange} pageSize={10} total={poetyData.total} />
 			</div>
 		)
 	}
